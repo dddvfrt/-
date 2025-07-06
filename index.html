@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدير المهام السايبربانك المتقدم - Cyberpunk Task Manager</title>
+    <meta name="description"
+        content="مدير مهام متطور بتصميم سايبربانك مذهل مع أدوات زمنية متكاملة. إدارة المهام، مؤقت بومودورو، ساعة عالمية، منبه ذكي - كل ما تحتاجه لزيادة الإنتاجية!">
+    <meta name="keywords"
+        content="مدير مهام, سايبربانك, بومودورو, مؤقت, منبه, إنتاجية, تنظيم الوقت, مهام يومية, task manager, cyberpunk, productivity, pomodoro, timer, alarm">
+    <meta name="author" content="Cyberpunk Task Manager">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="مدير المهام السايبربانك المتقدم">
+    <meta property="og:description" content="مدير مهام متطور بتصميم سايبربانك مذهل مع أدوات زمنية متكاملة">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-username.github.io/cyberpunk-task-manager">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="مدير المهام السايبربانك المتقدم">
+    <meta name="twitter:description" content="مدير مهام متطور بتصميم سايبربانك مذهل مع أدوات زمنية متكاملة">
+
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+
+    <div class="particles" id="particles"></div>
+
+
+    <div class="nav-buttons">
+        <button id="time-tools-btn" class="nav-btn magnetic-element" title="الأدوات الزمنية">
+            <i class="fas fa-clock"></i>
+            <span>الأدوات الزمنية</span>
+        </button>
+        <button id="theme-toggle" class="nav-btn magnetic-element" title="تبديل الوضع المظلم/الفاتح">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+
+    <div class="container">
+        <div class="todo-app animate__animated animate__fadeInUp">
+
+            <header class="app-header">
+                <h1><i class="fas fa-tasks"></i> مدير المهام المتقدم</h1>
+                <p class="app-subtitle">نظم مهامك بذكاء واحترافية</p>
+            </header>
+
+
+            <div class="stats-dashboard">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-list-check"></i></div>
+                    <div class="stat-info">
+                        <h3 id="total-tasks">0</h3>
+                        <p>إجمالي المهام</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info">
+                        <h3 id="completed-tasks">0</h3>
+                        <p>مهام مكتملة</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h3 id="pending-tasks">0</h3>
+                        <p>مهام معلقة</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-info">
+                        <h3 id="productivity-rate">0%</h3>
+                        <p>معدل الإنتاجية</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="progress-section">
+                <div class="progress-info">
+                    <h3>التقدم اليومي</h3>
+                    <span id="progress-text">0 من 0 مهام مكتملة</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+
+
+            <div class="task-input-section">
+                <form class="task-form" id="task-form">
+                    <div class="input-group">
+                        <input type="text" id="task-title" placeholder="عنوان المهمة..." required>
+                        <textarea id="task-description" placeholder="وصف المهمة (اختياري)..." rows="2"></textarea>
+                    </div>
+
+                    <div class="task-options">
+                        <div class="option-group">
+                            <label for="task-category">
+                                <i class="fas fa-tag"></i>
+                                التصنيف:
+                            </label>
+                            <select id="task-category">
+                                <option value="personal">شخصي</option>
+                                <option value="work">عمل</option>
+                                <option value="study">دراسة</option>
+                                <option value="health">صحة</option>
+                                <option value="shopping">تسوق</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="task-priority">
+                                <i class="fas fa-flag"></i>
+                                الأولوية:
+                            </label>
+                            <select id="task-priority">
+                                <option value="low">منخفضة</option>
+                                <option value="medium" selected>متوسطة</option>
+                                <option value="high">عالية</option>
+                                <option value="urgent">عاجلة</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="task-due-date">
+                                <i class="fas fa-calendar"></i>
+                                تاريخ الاستحقاق:
+                            </label>
+                            <input type="datetime-local" id="task-due-date">
+                        </div>
+
+                        <div class="option-group">
+                            <label for="task-timer">
+                                <i class="fas fa-clock"></i>
+                                مدة إنجاز المهمة:
+                            </label>
+                            <div class="timer-input-group">
+                                <input type="number" id="task-timer" placeholder="25" min="0" max="1440">
+                                <span class="input-unit">دقيقة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="add-task-btn magnetic-element">
+                        <i class="fas fa-plus"></i>
+                        <span>إضافة مهمة</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="البحث في المهام...">
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active magnetic-element" data-filter="all">الكل</button>
+                    <button class="filter-btn magnetic-element" data-filter="pending">معلقة</button>
+                    <button class="filter-btn magnetic-element" data-filter="completed">مكتملة</button>
+                    <button class="filter-btn magnetic-element" data-filter="overdue">متأخرة</button>
+                </div>
+
+                <div class="sort-options">
+                    <select id="sort-select">
+                        <option value="created">تاريخ الإنشاء</option>
+                        <option value="priority">الأولوية</option>
+                        <option value="due-date">تاريخ الاستحقاق</option>
+                        <option value="alphabetical">أبجدي</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3>لا توجد مهام بعد!</h3>
+                <p>ابدأ بإضافة مهمتك الأولى لتنظيم يومك</p>
+            </div>
+
+
+            <div class="tasks-container">
+                <ul id="task-list" class="task-list"></ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="action-buttons">
+        <button id="export-btn" class="action-btn magnetic-element" title="تصدير المهام">
+            <i class="fas fa-download"></i>
+        </button>
+        <button id="import-btn" class="action-btn magnetic-element" title="استيراد المهام">
+            <i class="fas fa-upload"></i>
+        </button>
+        <input type="file" id="import-file" accept=".json,.csv" style="display: none;">
+        <button id="clear-all-btn" class="action-btn danger magnetic-element" title="حذف جميع المهام">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </div>
+
+
+    <div id="notification-container" class="notification-container"></div>
+
+
+    <div id="task-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>تفاصيل المهمة</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-group">
+                    <label>
+                        <i class="fas fa-edit"></i>
+                        العنوان:
+                    </label>
+                    <input type="text" id="modal-task-title">
+                </div>
+                <div class="detail-group">
+                    <label>
+                        <i class="fas fa-align-left"></i>
+                        الوصف:
+                    </label>
+                    <textarea id="modal-task-description" rows="3"></textarea>
+                </div>
+                <div class="detail-group">
+                    <label>
+                        <i class="fas fa-tag"></i>
+                        التصنيف:
+                    </label>
+                    <select id="modal-task-category">
+                        <option value="personal">شخصي</option>
+                        <option value="work">عمل</option>
+                        <option value="study">دراسة</option>
+                        <option value="health">صحة</option>
+                        <option value="shopping">تسوق</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                <div class="detail-group">
+                    <label>
+                        <i class="fas fa-flag"></i>
+                        الأولوية:
+                    </label>
+                    <select id="modal-task-priority">
+                        <option value="low">منخفضة</option>
+                        <option value="medium">متوسطة</option>
+                        <option value="high">عالية</option>
+                        <option value="urgent">عاجلة</option>
+                    </select>
+                </div>
+                <div class="detail-group">
+                    <label>
+                        <i class="fas fa-calendar"></i>
+                        تاريخ الاستحقاق:
+                    </label>
+                    <input type="datetime-local" id="modal-task-due-date">
+                </div>
+                <div class="detail-group">
+                    <label>
+                        <i class="fas fa-clock"></i>
+                        مدة إنجاز المهمة:
+                    </label>
+                    <div class="timer-input-group">
+                        <input type="number" id="modal-task-timer" placeholder="25" min="0" max="1440">
+                        <span class="input-unit">دقيقة</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-task-changes" class="btn-primary">حفظ التغييرات</button>
+                <button id="cancel-task-changes" class="btn-secondary">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="advanced-task-manager.js"></script>
+
+</html>

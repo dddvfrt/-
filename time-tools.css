@@ -1,0 +1,650 @@
+/* Cyberpunk Time Tools Styles */
+
+/* Navigation Buttons */
+.nav-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.nav-btn {
+    padding: 1rem 1.5rem;
+    background: var(--bg-glass);
+    border: 2px solid var(--neon-cyan);
+    border-radius: var(--border-radius);
+    color: var(--neon-cyan);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-neon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    box-shadow: var(--shadow-pink);
+}
+
+/* Time Container */
+.time-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* Time Header */
+.time-header {
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    background: var(--bg-glass);
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--neon-cyan);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-neon);
+    animation: slideInFromLeft 0.8s ease-out;
+}
+
+.time-header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-large);
+    margin-bottom: 1rem;
+    animation: neonGlow 2s ease-in-out infinite;
+}
+
+.time-header h1 i {
+    color: var(--neon-pink);
+    animation: float 3s ease-in-out infinite;
+}
+
+.time-subtitle {
+    font-size: 1.3rem;
+    color: var(--neon-purple);
+    font-weight: 400;
+    text-shadow: var(--glow-small);
+}
+
+/* Time Tools Grid */
+.time-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    animation: slideInFromRight 0.8s ease-out 0.3s both;
+}
+
+/* Time Tool Cards */
+.time-tool-card {
+    background: var(--bg-glass);
+    border: 2px solid var(--neon-cyan);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-neon);
+    transition: var(--transition-bounce);
+    position: relative;
+    overflow: hidden;
+    animation: bounceIn 0.6s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.time-tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    transition: var(--transition-smooth);
+}
+
+.time-tool-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--neon-pink);
+    box-shadow: var(--shadow-pink);
+}
+
+.time-tool-card:hover::before {
+    left: 100%;
+}
+
+/* Tool Headers */
+.tool-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--neon-cyan);
+}
+
+.tool-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.tool-header h3 i {
+    color: var(--neon-pink);
+    font-size: 1.3rem;
+}
+
+/* Digital Clock */
+.digital-clock {
+    text-align: center;
+}
+
+.time-display {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-large);
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    animation: neonGlow 3s ease-in-out infinite;
+}
+
+.date-display {
+    font-size: 1.5rem;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-medium);
+    margin-bottom: 0.5rem;
+}
+
+.timezone-display {
+    font-size: 1rem;
+    color: var(--neon-purple);
+    text-shadow: var(--glow-small);
+}
+
+/* Timer */
+.timer-display {
+    text-align: center;
+}
+
+.timer-time {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--neon-orange);
+    text-shadow: var(--glow-large);
+    margin-bottom: 2rem;
+    font-family: 'Courier New', monospace;
+}
+
+.timer-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.time-input {
+    padding: 0.8rem;
+    border: 2px solid var(--neon-purple);
+    border-radius: var(--border-radius);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-size: 1rem;
+    text-align: center;
+    width: 80px;
+    backdrop-filter: blur(10px);
+}
+
+.time-input:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: var(--shadow-pink);
+}
+
+.timer-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Time Buttons */
+.time-btn {
+    padding: 1rem 1.5rem;
+    border: 2px solid;
+    border-radius: var(--border-radius);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.time-btn.start {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+}
+
+.time-btn.pause {
+    border-color: var(--neon-orange);
+    color: var(--neon-orange);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+}
+
+.time-btn.reset {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    box-shadow: var(--shadow-pink);
+}
+
+.time-btn.set {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: var(--shadow-neon);
+}
+
+.time-btn.lap {
+    border-color: var(--neon-purple);
+    color: var(--neon-purple);
+    box-shadow: 0 0 15px rgba(128, 0, 255, 0.3);
+}
+
+.time-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-large);
+}
+
+/* World Clock */
+.world-clocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.world-time {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--neon-purple);
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
+}
+
+.world-time:hover {
+    border-color: var(--neon-pink);
+    transform: scale(1.02);
+}
+
+.city-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+    margin-bottom: 0.5rem;
+    text-shadow: var(--glow-small);
+}
+
+.city-time {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-medium);
+    font-family: 'Courier New', monospace;
+}
+
+/* Alarm */
+.alarm-section {
+    text-align: center;
+}
+
+.alarm-time-set {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.alarm-input {
+    padding: 1rem;
+    border: 2px solid var(--neon-purple);
+    border-radius: var(--border-radius);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.alarm-input:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: var(--shadow-pink);
+}
+
+.alarms-list {
+    margin-top: 2rem;
+}
+
+.alarm-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--neon-green);
+    border-radius: var(--border-radius);
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+.alarm-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.alarm-time-display {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-medium);
+}
+
+.alarm-label-display {
+    font-size: 1rem;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-small);
+}
+
+.alarm-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.alarm-btn {
+    padding: 0.5rem;
+    border: 2px solid;
+    border-radius: 50%;
+    background: var(--bg-glass);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alarm-btn.delete {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+}
+
+.alarm-btn.toggle {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.alarm-btn:hover {
+    transform: scale(1.1);
+    box-shadow: var(--glow-medium);
+}
+
+/* Stopwatch */
+.stopwatch-display {
+    text-align: center;
+}
+
+.stopwatch-time {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--neon-green);
+    text-shadow: var(--glow-large);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+.stopwatch-milliseconds {
+    font-size: 1.5rem;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-medium);
+    margin-bottom: 2rem;
+    font-family: 'Courier New', monospace;
+}
+
+.stopwatch-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.laps-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--neon-purple);
+    border-radius: var(--border-radius);
+    animation: slideInFromRight 0.3s ease-out;
+}
+
+.lap-number {
+    color: var(--neon-cyan);
+    font-weight: 600;
+}
+
+.lap-time {
+    color: var(--neon-pink);
+    font-family: 'Courier New', monospace;
+}
+
+/* Pomodoro Timer */
+.pomodoro-display {
+    text-align: center;
+}
+
+.pomodoro-time {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--neon-orange);
+    text-shadow: var(--glow-large);
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.pomodoro-phase {
+    font-size: 1.3rem;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-medium);
+    margin-bottom: 2rem;
+}
+
+.pomodoro-progress {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.progress-ring {
+    position: relative;
+}
+
+.progress-ring-svg {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-circle-bg {
+    fill: none;
+    stroke: var(--bg-tertiary);
+    stroke-width: 8;
+}
+
+.progress-ring-circle {
+    fill: none;
+    stroke: var(--neon-orange);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    transition: stroke-dashoffset 0.5s ease;
+    filter: drop-shadow(0 0 10px var(--neon-orange));
+}
+
+.pomodoro-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.pomodoro-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    color: var(--neon-cyan);
+    font-size: 0.9rem;
+    text-shadow: var(--glow-small);
+}
+
+.stat-value {
+    color: var(--neon-pink);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: var(--glow-medium);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .time-tools-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .time-tool-card {
+        padding: 1.5rem;
+    }
+
+    .time-display {
+        font-size: 2.5rem;
+    }
+
+    .timer-time {
+        font-size: 2rem;
+    }
+
+    .timer-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .world-clocks {
+        grid-template-columns: 1fr;
+    }
+
+    .alarm-time-set {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-buttons {
+        top: 10px;
+        right: 10px;
+        gap: 0.5rem;
+        flex-direction: column;
+    }
+
+    .nav-btn {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+        min-width: 50px;
+    }
+
+    .nav-btn span {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .time-container {
+        padding: 1rem;
+    }
+
+    .time-header {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .time-header h1 {
+        font-size: 2rem;
+    }
+
+    .time-subtitle {
+        font-size: 1rem;
+    }
+
+    .time-display {
+        font-size: 2rem;
+    }
+
+    .timer-time {
+        font-size: 1.8rem;
+    }
+
+    .stopwatch-time {
+        font-size: 2.5rem;
+    }
+
+    .pomodoro-time {
+        font-size: 2rem;
+    }
+
+    .time-btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+}

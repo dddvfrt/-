@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأدوات الزمنية السايبربانك - Cyberpunk Time Tools</title>
+    <meta name="description"
+        content="أدوات زمنية متطورة بتصميم سايبربانك مذهل - مؤقت عكسي، منبه ذكي، ساعة عالمية، مؤقت بومودورو، ساعة إيقاف. كل ما تحتاجه لإدارة الوقت بكفاءة!">
+    <meta name="keywords"
+        content="مؤقت, منبه, ساعة عالمية, بومودورو, ساعة إيقاف, أدوات زمنية, سايبربانك, timer, alarm, world clock, pomodoro, stopwatch, cyberpunk">
+    <meta name="author" content="Cyberpunk Time Tools">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="الأدوات الزمنية السايبربانك">
+    <meta property="og:description"
+        content="أدوات زمنية متطورة بتصميم سايبربانك مذهل - مؤقت، منبه، ساعة عالمية، بومودورو">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-username.github.io/cyberpunk-task-manager/time-tools.html">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="الأدوات الزمنية السايبربانك">
+    <meta name="twitter:description"
+        content="أدوات زمنية متطورة بتصميم سايبربانك مذهل - مؤقت، منبه، ساعة عالمية، بومودورو">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="time-tools.css">
+</head>
+
+<body>
+    <!-- Custom Cyberpunk Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+        <button id="back-to-tasks" class="nav-btn magnetic-element" title="العودة للمهام">
+            <i class="fas fa-tasks"></i>
+            <span>المهام</span>
+        </button>
+        <button id="theme-toggle" class="nav-btn magnetic-element" title="تبديل الوضع">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="time-container">
+        <!-- Header -->
+        <header class="time-header">
+            <h1><i class="fas fa-clock"></i> الأدوات الزمنية </h1>
+            <p class="time-subtitle">تحكم في الزمن بتقنية المستقبل</p>
+        </header>
+
+        <!-- Time Tools Grid -->
+        <div class="time-tools-grid">
+            <!-- Digital Clock -->
+            <div class="time-tool-card clock-card magnetic-element">
+                <div class="tool-header">
+                    <h3><i class="fas fa-clock"></i> الساعة الرقمية</h3>
+                </div>
+                <div class="digital-clock">
+                    <div class="time-display" id="digital-time">00:00:00</div>
+                    <div class="date-display" id="digital-date">الأحد، 1 يناير 2024</div>
+                    <div class="timezone-display" id="timezone">GMT+3</div>
+                </div>
+            </div>
+
+            <!-- Timer -->
+            <div class="time-tool-card timer-card magnetic-element">
+                <div class="tool-header">
+                    <h3><i class="fas fa-stopwatch"></i> المؤقت</h3>
+                </div>
+                <div class="timer-display">
+                    <div class="timer-time" id="timer-display">00:00:00</div>
+                    <div class="timer-controls">
+                        <input type="number" id="timer-hours" placeholder="ساعات" min="0" max="23" class="time-input">
+                        <input type="number" id="timer-minutes" placeholder="دقائق" min="0" max="59" class="time-input">
+                        <input type="number" id="timer-seconds" placeholder="ثواني" min="0" max="59" class="time-input">
+                    </div>
+                    <div class="timer-buttons">
+                        <button id="timer-start" class="time-btn start magnetic-element">
+                            <i class="fas fa-play"></i> بدء
+                        </button>
+                        <button id="timer-pause" class="time-btn pause magnetic-element">
+                            <i class="fas fa-pause"></i> إيقاف
+                        </button>
+                        <button id="timer-reset" class="time-btn reset magnetic-element">
+                            <i class="fas fa-stop"></i> إعادة تعيين
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- World Clock -->
+            <div class="time-tool-card world-clock-card magnetic-element">
+                <div class="tool-header">
+                    <h3><i class="fas fa-globe"></i> الساعة العالمية</h3>
+                </div>
+                <div class="world-clocks">
+                    <div class="world-time" data-timezone="Asia/Riyadh">
+                        <div class="city-name">الرياض</div>
+                        <div class="city-time" id="riyadh-time">00:00:00</div>
+                    </div>
+                    <div class="world-time" data-timezone="America/New_York">
+                        <div class="city-name">نيويورك</div>
+                        <div class="city-time" id="newyork-time">00:00:00</div>
+                    </div>
+                    <div class="world-time" data-timezone="Europe/London">
+                        <div class="city-name">لندن</div>
+                        <div class="city-time" id="london-time">00:00:00</div>
+                    </div>
+                    <div class="world-time" data-timezone="Asia/Tokyo">
+                        <div class="city-name">طوكيو</div>
+                        <div class="city-time" id="tokyo-time">00:00:00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alarm -->
+            <div class="time-tool-card alarm-card magnetic-element">
+                <div class="tool-header">
+                    <h3><i class="fas fa-bell"></i> المنبه</h3>
+                </div>
+                <div class="alarm-section">
+                    <div class="alarm-time-set">
+                        <input type="time" id="alarm-time" class="alarm-input">
+                        <input type="text" id="alarm-label" placeholder="تسمية المنبه..." class="alarm-input">
+                    </div>
+                    <div class="alarm-controls">
+                        <button id="alarm-set" class="time-btn set magnetic-element">
+                            <i class="fas fa-plus"></i> إضافة منبه
+                        </button>
+                    </div>
+                    <div class="alarms-list" id="alarms-list">
+                        <!-- Alarms will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stopwatch -->
+            <div class="time-tool-card stopwatch-card magnetic-element">
+                <div class="tool-header">
+                    <h3><i class="fas fa-hourglass-half"></i> ساعة الإيقاف</h3>
+                </div>
+                <div class="stopwatch-display">
+                    <div class="stopwatch-time" id="stopwatch-display">00:00:00</div>
+                    <div class="stopwatch-milliseconds" id="stopwatch-ms">000</div>
+                    <div class="stopwatch-controls">
+                        <button id="stopwatch-start" class="time-btn start magnetic-element">
+                            <i class="fas fa-play"></i> بدء
+                        </button>
+                        <button id="stopwatch-lap" class="time-btn lap magnetic-element">
+                            <i class="fas fa-flag"></i> لفة
+                        </button>
+                        <button id="stopwatch-reset" class="time-btn reset magnetic-element">
+                            <i class="fas fa-stop"></i> إعادة تعيين
+                        </button>
+                    </div>
+                    <div class="laps-list" id="laps-list">
+                        <!-- Lap times will be added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pomodoro Timer -->
+            <div class="time-tool-card pomodoro-card magnetic-element">
+                <div class="tool-header">
+                    <h3><i class="fas fa-tomato"></i> مؤقت بومودورو</h3>
+                </div>
+                <div class="pomodoro-display">
+                    <div class="pomodoro-time" id="pomodoro-display">25:00</div>
+                    <div class="pomodoro-phase" id="pomodoro-phase">جلسة عمل</div>
+                    <div class="pomodoro-progress">
+                        <div class="progress-ring">
+                            <svg class="progress-ring-svg" width="120" height="120">
+                                <circle class="progress-ring-circle-bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress-ring-circle" cx="60" cy="60" r="54" id="pomodoro-circle">
+                                </circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="pomodoro-controls">
+                        <button id="pomodoro-start" class="time-btn start magnetic-element">
+                            <i class="fas fa-play"></i> بدء
+                        </button>
+                        <button id="pomodoro-pause" class="time-btn pause magnetic-element">
+                            <i class="fas fa-pause"></i> إيقاف
+                        </button>
+                        <button id="pomodoro-reset" class="time-btn reset magnetic-element">
+                            <i class="fas fa-stop"></i> إعادة تعيين
+                        </button>
+                    </div>
+                    <div class="pomodoro-stats">
+                        <div class="stat">
+                            <span class="stat-label">الجلسات:</span>
+                            <span class="stat-value" id="pomodoro-sessions">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">الاستراحات:</span>
+                            <span class="stat-value" id="pomodoro-breaks">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script src="advanced-task-manager.js"></script>
+    <script src="time-tools.js"></script>
+
+</body>
+
+</html>

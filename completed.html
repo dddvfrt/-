@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <h1>Completed Tasks</h1>
+            <ul id="completed-tasks-list"></ul>
+        </div>
+        <div class="navigation-container">
+            <button id="back-btn" class="view-completed-btn">Back to To-Do List</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+            const completedTasksList = document.getElementById('completed-tasks-list');
+            const backBtn = document.getElementById('back-btn');
+
+
+            completedTasks.forEach(task => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${task.text}</span>
+                    <button class="delete-completed-btn">❌</button>
+                `;
+                completedTasksList.appendChild(li);
+            });
+
+
+            completedTasksList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('delete-completed-btn')) {
+                    const li = e.target.closest('li');
+                    const taskText = li.querySelector('span').textContent;
+
+
+                    const updatedTasks = completedTasks.filter(task => task.text !== taskText);
+                    localStorage.setItem('completedTasks', JSON.stringify(updatedTasks));
+
+                    li.remove();
+                }
+            });
+
+            backBtn.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+
+</html>
